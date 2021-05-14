@@ -1,0 +1,584 @@
+# -*- coding: utf-8 -*-
+<KivyCamera>:
+    Button:
+        opacity: 0
+    Image:
+        id: img
+
+<Login>:
+    MDLabel:
+        text: 'Login'
+        pos_hint: {'center_y': .85}
+        font_style: 'H4'
+        halign: 'center'
+        theme_text_color: 'Custom'
+        text_color: 0,0,0,1
+    MDLabel:
+        text: 'Welcome to my house'
+        pos_hint: {'center_y': .75}
+        font_style: 'H5'
+        halign: 'center'
+        theme_text_color: 'Custom'
+        text_color: 0,0,0,1
+    MDTextField:
+        id: id_user_name
+        hint_text: 'Enter your email'
+        pos_hint: {'center_x': .5,'center_y': .6}
+        current_hint_text_color: 0,0,0,1
+        size_hint_x: .8
+    MDTextField:
+        id: id_user_password
+        hint_text: 'Password'
+        pos_hint: {'center_x': .5,'center_y': .5}
+        current_hint_text_color: 0,0,0,1
+        size_hint_x: .8
+        password: True
+    MDLabel: 
+        id: id_loading
+        text:'Loading...'
+        pos_hint: {'center_y': .4}
+        font_style: 'H5'
+        halign: 'center'
+        theme_text_color: 'Custom'
+        text_color: 0,0,0,1
+        opacity: 0
+    MDRaisedButton:
+        text: 'Log in'
+        pos_hint: {'center_x': .5, 'center_y': .2}
+        size_hint_x:.5
+        on_release: root.event_sign_in()
+    MDRaisedButton:
+        text: 'Log in with recognize face'
+        pos_hint: {'center_x': .5, 'center_y': .3}
+        size_hint_x:.5
+        on_press: root.event_sign_in_with_face()
+        
+<Door>:
+    
+    MDRectangleFlatButton:
+        text: "Entering the house"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.1}
+        theme_text_color: "Custom"
+        text_color: 97/255, 97/255, 97/255,1
+        on_release: root.manager.current = 'hello'
+
+    MDLabel:
+        text: "SMART HOME"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.95}
+        font_size: '24sp'
+        bold: True
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: id_location
+        text: "no location"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.4}
+        font_size: '20sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: id_sts_weather
+        text: "error"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.26}
+        font_size: '14sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        text: "error"
+        id: dai
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.33}
+        font_size: '40sp'
+        bold: True
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: realtime_humi
+        text: "error"
+        halign: 'center'
+        pos_hint: {'center_x': .63, 'center_y':.325}
+        font_size: '15sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    Image:
+        orientation: 'horizontal'
+        source: 'smarthome.png'
+        pos_hint: {'center_x': .5, 'center_y':.65}
+        aspect_ratio: False
+        allow_stretch: True
+
+##BEDROOM////////////////////////////////////////////////
+<Bed_room>:
+    FitImage:
+        orientation: 'horizontal'
+        source: 'bedroom.png'
+        #pos_hint: {'center_x': .5, 'center_y':.8}
+        aspect_ratio: False
+        allow_stretch: True
+
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: .5
+        pos_hint: {'center_x': .5, 'center_y':.04} 
+        border_radius: 20
+        radius: [20] 
+
+    MDFlatButton:
+        text: "Living room"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.04}
+        theme_text_color: "Custom"
+        text_color: 34/255, 40/255, 49/255, 1
+        on_release: root.manager.current = 'hello'
+        
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: 1
+        pos_hint: {'center_x': .16, 'center_y':.04} 
+        border_radius: 20
+        radius: [20] 
+
+    MDFlatButton:
+        pos_hint: {'center_x': .16, 'center_y':.04}
+        theme_text_color: 'Custom'
+        text_color: 34/255, 40/255, 49/255, 1
+        text: "Bed room"
+        bold: True
+        
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: .5
+        pos_hint: {'center_x': .84, 'center_y':.04} 
+        border_radius: 20
+        radius: [20]
+
+    MDFlatButton:
+        pos_hint: {'center_x': .84, 'center_y':.04}
+        theme_text_color: 'Custom'
+        text_color: 34/255, 40/255, 49/255, 1
+        text: "Kitchen room"
+        bold: True
+        on_release: root.manager.current = 'kitchenroom'
+
+##KITCHENROOM////////////////////////////////////////////////
+<Kitchen_room>:
+            
+    FitImage:
+        orientation: 'horizontal'
+        source: 'kitchen.png'
+        #pos_hint: {'center_x': .5, 'center_y':.8}
+        aspect_ratio: False
+        allow_stretch: True
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "MDToolbar"
+            
+        MDFloatLayout:
+     
+            MDCard:
+                orientation: 'horizontal'
+                size_hint: 0.3,.07
+                pos: 100,100
+                opacity: .5
+                pos_hint: {'center_x': .5, 'center_y':.04} 
+                border_radius: 20
+                radius: [20] 
+
+            MDFlatButton:
+                text: "Living room"
+                halign: 'center'
+                pos_hint: {'center_x': .5, 'center_y':.04}
+                theme_text_color: "Custom"
+                text_color: 34/255, 40/255, 49/255, 1
+                on_release: root.manager.current = 'hello'
+
+            MDCard:
+                orientation: 'horizontal'
+                size_hint: 0.3,.07
+                pos: 100,100
+                opacity: .5
+                #md_bg_color :[34/255, 40/255, 49/255, 1]
+                pos_hint: {'center_x': .16, 'center_y':.04} 
+                border_radius: 20
+                radius: [20] 
+
+            MDFlatButton:
+                pos_hint: {'center_x': .16, 'center_y':.04}
+                theme_text_color: 'Custom'
+                text_color: 34/255, 40/255, 49/255, 1
+                text: "Bed room"
+                bold: True
+                on_release: root.manager.current = 'bedroom'
+
+            MDCard:
+                orientation: 'horizontal'
+                size_hint: 0.3,.07
+                pos: 100,100
+                opacity: 1
+                pos_hint: {'center_x': .84, 'center_y':.04} 
+                border_radius: 20
+                radius: [20]
+
+            MDFlatButton:
+                pos_hint: {'center_x': .84, 'center_y':.04}
+                theme_text_color: 'Custom'
+                text_color: 34/255, 40/255, 49/255, 1
+                text: "Kitchen room"
+                bold: True
+
+<Hello>:
+#LIVINGROOM/////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////////////////////////////////////////////////////////// 
+    name: 'hello'
+
+    FitImage:
+        orientation: 'horizontal'
+        source: 'anh.png'
+        #pos_hint: {'center_x': .5, 'center_y':.8}
+        aspect_ratio: False
+        allow_stretch: True
+#////////////WEATHER//////////////////////////////
+    
+    MDFlatButton:
+        pos_hint: {'center_x': .8, 'center_y':.6}
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+        text: "log_out"
+        bold: True
+        on_release: root.event_button_log_out()
+
+    MDCard:
+        id: card_weather
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .5, 'center_y': .9}
+        size_hint: 1,.2
+        pos: 100,100  
+        opacity: 0.3
+#/////////////////////////////////////
+    
+
+    MDCard:
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .35, 'center_y': .9}
+        size_hint: .007,.07
+        pos: 100,100   
+        opacity: 1
+        md_bg_color :[34/255, 40/255, 49/255, 1]
+
+    MDCard:
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .65, 'center_y': .9}
+        size_hint: .007,.07
+        pos: 100,100   
+        opacity: 1
+        md_bg_color :[34/255, 40/255, 49/255, 1]
+        
+    MDLabel:
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.97}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color:97/255, 97/255, 97/255,1
+        text: "Indoor environment"
+        bold: True
+
+    Image:
+        id: emotion    
+        source: 'smile.png'
+        size_hint: 0.1, 0.1
+        pos_hint: {'center_x': .48, 'center_y':.9}
+    
+    Image:
+        id: weather    
+        source: 'sun(1).png'
+        size_hint: 0.08, 0.08
+        pos_hint: {'center_x': .82, 'center_y':.9}
+    
+    Image:
+        id: pm    
+        source: 'pm.png'
+        size_hint: 0.08, 0.08
+        pos_hint: {'center_x': .17, 'center_y':.9}
+
+    MDLabel:
+        id: good
+        text: "Moderate"
+        halign: 'center'
+        pos_hint: {'center_x': .48, 'center_y':.83}
+        font_size: '16sp'
+        bold: True
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: label_pm
+        text: "00"
+        halign: 'center'
+        pos_hint: {'center_x': .17, 'center_y':.83}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: label_temp
+        text: "30"
+        halign: 'center'
+        pos_hint: {'center_x': .74, 'center_y':.83}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        text: "/"
+        halign: 'center'
+        pos_hint: {'center_x': .82, 'center_y':.83}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDLabel:
+        id: label_hum
+        text: "85"
+        halign: 'center'
+        pos_hint: {'center_x': .9, 'center_y':.83}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+#////////////WEATHER//////////////////////////////
+#/////////////HEALTHY TIPS/////////////
+    MDCard:
+        id: card_weather
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .5, 'center_y': .65}
+        size_hint: .5,.2
+        pos: 100,100
+        #border_radius: 40
+        #radius: [40]  
+        opacity: 0.3
+
+    MDLabel:
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.72}
+        font_size: '16sp'
+        theme_text_color: 'Custom'
+        text_color:97/255, 97/255, 97/255,1
+        text: "Health tips"
+        bold: True
+
+    
+    Image:
+        id: air    
+        source: 'bicycle.png'
+        size_hint: 0.06, 0.06
+        pos_hint: {'center_x': .35, 'center_y':.65}
+    Image:
+        id: face_mask
+        source: 'mask.png'
+        size_hint: 0.08, 0.08
+        pos_hint: {'center_x': .65, 'center_y':.65}
+    Image:
+        id: window
+        source: 'closewindow.png'
+        size_hint: 0.08, 0.08
+        pos_hint: {'center_x': .50, 'center_y':.65}
+    
+
+    MDLabel:
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.58}
+        theme_text_color: 'Custom'
+        text_color:97/255, 97/255, 97/255,1
+        text: "Limit intense physical activity "
+        font_size: '13sp'
+        italic: True
+
+#////////////////SCREEN///////////////////////
+
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: 1
+        pos_hint: {'center_x': .5, 'center_y':.04} 
+        border_radius: 20
+        radius: [20] 
+
+    MDFlatButton:
+        text: "Living room"
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y':.04}
+        theme_text_color: "Custom"
+        text_color: 97/255, 97/255, 97/255,1
+            
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: .5
+        pos_hint: {'center_x': .16, 'center_y':.04} 
+        border_radius: 20
+        radius: [20] 
+
+    MDFlatButton:
+        pos_hint: {'center_x': .16, 'center_y':.04}
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+        text: "Bed room"
+        bold: True
+        on_release: root.manager.current = 'bedroom'
+
+    MDCard:
+        orientation: 'horizontal'
+        size_hint: 0.3,.07
+        pos: 100,100
+        opacity: .5
+        pos_hint: {'center_x': .84, 'center_y':.04} 
+        border_radius: 20
+        radius: [20]
+
+    MDFlatButton:
+        pos_hint: {'center_x': .84, 'center_y':.04}
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+        text: "Kitchen room"
+        bold: True
+        on_release: root.manager.current = 'kitchenroom'
+    MDFlatButton:
+        pos_hint: {'center_x': .5, 'center_y':.5}
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+        text: "Home"
+        bold: True
+        on_release: root.manager.current = 'door'
+#////////////////SCREEN///////////////////////
+    MDCard:
+        id: card_coverlight
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .71, 'center_y': .43}
+        size_hint: .27,.17
+        pos: 100,100
+        #elevation: 10
+        border_radius: 10
+        radius: [10]  
+        opacity: 0.2
+              
+    MDIconButton:
+        id: btn_light
+        icon: "lightbulb"
+        text_color: 97/255, 97/255, 97/255,1
+        theme_text_color: "Custom"
+        user_font_size: "35sp"
+        pos_hint:  {'center_x': .71, 'center_y': .47}
+        on_release: root.event_button_light()
+
+    MDLabel:
+        id: cover_light
+        text: "Main Light"
+        halign: 'center'
+        pos_hint: {'center_x': .71, 'center_y':.37}
+        font_size: '13sp'
+        theme_text_color: 'Custom'
+        text_color:97/255, 97/255, 97/255,1
+    
+    MDCard:
+        id: card_mainlight
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .30, 'center_y': .43}
+        size_hint: .27,.17
+        pos: 100,100
+        border_radius: 10
+        radius: [10] 
+        opacity: 0.2
+        #elevation: 10     
+        
+    MDIconButton:
+        id: btn_fan
+        icon: "ceiling-light"
+        text_color: 97/255, 97/255, 97/255,1
+        theme_text_color: "Custom"
+        user_font_size: "35sp"
+        pos_hint: {'center_x': .3, 'center_y': .47}
+
+    MDLabel:
+        text: "Sleeping Light" 
+        halign: 'center'
+        pos_hint: {'center_x': .31, 'center_y':.37}
+        font_size: '13sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+
+    MDCard:
+        id: card_ceilingfan
+        opacity: 0.2
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .3, 'center_y': .2}
+        size_hint: .27,.17
+        pos: 100,100
+        border_radius: 10
+        radius: [10] 
+        #elevation: 10     
+
+    MDIconButton:
+        id: btn_fan
+        icon: "fan"
+        text_color: 97/255, 97/255, 97/255,1
+        theme_text_color: "Custom"
+        user_font_size: "35sp"
+        pos_hint: {'center_x': .3, 'center_y': .24}
+        on_release: root.event_button_fan()
+
+    MDLabel:
+        text: "Ceiling Fan"
+        halign: 'center'
+        pos_hint: {'center_x': .3, 'center_y':.14}
+        font_size: '13sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1
+    MDCard:
+        id: card_ceilingfan
+        opacity: 0.2
+        orientation: 'horizontal'
+        pos_hint: {'center_x': .71, 'center_y': .2}
+        size_hint: .27,.17
+        pos: 100,100
+        border_radius: 10
+        radius: [10] 
+        #elevation: 10     
+
+    MDIconButton:
+        id: btn_window
+        icon: "window-shutter"
+        text_color: 97/255, 97/255, 97/255,1
+        theme_text_color: "Custom"
+        user_font_size: "35sp"
+        pos_hint: {'center_x': .71, 'center_y': .24}
+
+    MDLabel:
+        text: "Lobby Window"
+        halign: 'center'
+        pos_hint: {'center_x': .71, 'center_y':.14}
+        font_size: '13sp'
+        theme_text_color: 'Custom'
+        text_color: 97/255, 97/255, 97/255,1          
+                
+#BEDROOM/////////////////////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////////////     

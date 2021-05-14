@@ -1,1 +1,1 @@
-# recognizer_app_kivy_linux
+# opencv_app_kivy
